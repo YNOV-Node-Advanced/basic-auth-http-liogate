@@ -1,0 +1,23 @@
+{
+  "name": "basic-auth-http-liogate",
+  "version": "1.0.0",
+  "description": "Écrire un middleware express pour protéger une route avec un username/mot de passe.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YNOV-Node-Advanced/basic-auth-http-liogate.git"
+  },
+  "author": "Etienne Fachaux",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YNOV-Node-Advanced/basic-auth-http-liogate/issues"
+  },
+  "homepage": "https://github.com/YNOV-Node-Advanced/basic-auth-http-liogate#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
