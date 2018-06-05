@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/YNOV-Node-Advanced/basic-auth-http-liogate#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "cookie-parser": "^1.4.3",
+    "cookie-signature": "^1.1.0",
+    "express": "^4.16.3",
+    "uuid": "^3.2.1"
   }
 }
