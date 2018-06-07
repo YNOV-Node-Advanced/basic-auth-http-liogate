@@ -1,6 +1,5 @@
 const express = require('express');
 const crypto = require('crypto');
-const uuidv4 = require('uuid/v4');
 const cookieParser = require('cookie-parser');
 const app = express();
 const SECRET = 'a_very_strong_password';
@@ -9,21 +8,6 @@ const COOKIE_KEY = 'CUSTOM_SESSID';
 const users = {
     admin: 'admin',
     user: 'user'
-};
-
-const sessionStorage = {
-    get: (id, key) => {
-        if (sessionStorage.data.hasOwnProperty(id)) {
-            return sessionStorage.data[id][key];
-        }
-    },
-    set: (id, key, value) => {
-        if (!sessionStorage.data.hasOwnProperty(id)) {
-            sessionStorage.data[id] = {};
-        }
-        sessionStorage.data[id][key] = value;
-    },
-    data: {}
 };
 
 function hashCookie(value) {
@@ -62,7 +46,7 @@ app.use((request, response, next) => {
         user: user.name,
         signature: hashCookie(user.name)
     };
-    response.cookie(COOKIE_KEY, JSON.stringify(request.session), { expires: new Date(Date.now() + 3600 * 24 * 365) });
+    response.cookie(COOKIE_KEY, JSON.stringify(request.session), { expires: new Date(Date.now() + 3600 * 24 * 365), httpOnly: true });
     return next();
 });
 
