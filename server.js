@@ -44,7 +44,7 @@ function auth(request) {
 app.use(cookieParser());
 app.use((request, response, next) => {
     let session = request.cookies[COOKIE_KEY];
-    if (session !== undefined) {
+    if (session != undefined) {
         session = JSON.parse(session);
         if(hashCookie(session.user) !== session.signature) {
             return response.status(401).send('Access denied');
@@ -62,7 +62,7 @@ app.use((request, response, next) => {
         user: user.name,
         signature: hashCookie(user.name)
     };
-    response.cookie(COOKIE_KEY, JSON.stringify(request.user), { expires: new Date(Date.now() + 3600 * 24 * 365) });
+    response.cookie(COOKIE_KEY, JSON.stringify(request.session), { expires: new Date(Date.now() + 3600 * 24 * 365) });
     return next();
 });
 
