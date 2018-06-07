@@ -28,13 +28,17 @@ function auth(request) {
 app.use(cookieParser());
 app.use((request, response, next) => {
     let session = request.cookies[COOKIE_KEY];
-    if (session != undefined) {
-        session = JSON.parse(session);
-        if(hashCookie(session.user) !== session.signature) {
-            return response.status(401).send('Access denied');
-        } else {
-            request.session = session;
-            return next();
+    if (session !== undefined) {
+        try {
+            session = JSON.parse(session);
+            if(hashCookie(session.user) !== session.signature) {
+                return response.status(401).send('Access denied');
+            } else {
+                request.session = session;
+                return next();
+            }
+        } catch (err) {
+            console('Basic auth required');
         }
     }
     var user = auth(request);
